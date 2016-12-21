@@ -800,7 +800,8 @@ void ProcessedTreeProducerBTag::analyze(edm::Event const& event, edm::EventSetup
 	 qcdpfjetchs.setVtxInfo(mpuTrk,mlvTrk,mjtTrk);
 	 qcdpfjetchs.setHO(hof);
 
-	 double TCHE = i_pfjetchs->bDiscriminator("trackCountingHighEffBJetTags");
+	 /*
+     double TCHE = i_pfjetchs->bDiscriminator("trackCountingHighEffBJetTags");
 	 double TCHP = i_pfjetchs->bDiscriminator("trackCountingHighPurBJetTags");
 	 double TCHEpf = i_pfjetchs->bDiscriminator("pfTrackCountingHighEffBJetTags");
 	 double TCHPpf = i_pfjetchs->bDiscriminator("pfTrackCountingHighPurBJetTags");
@@ -820,10 +821,12 @@ void ProcessedTreeProducerBTag::analyze(edm::Event const& event, edm::EventSetup
 	 double CinclSVpf = i_pfjetchs->bDiscriminator("pfCombinedInclusiveSecondaryVertexBJetTags");
 	 double CMVApf = i_pfjetchs->bDiscriminator("pfCombinedMVABJetTags");
 	 double CSVSoftLeptonpf = i_pfjetchs->bDiscriminator("pfCombinedSecondaryVertexSoftLeptonBJetTags");
-	 
-	 double CSVpfPositive = i_pfjetchs->bDiscriminator("pfPositiveCombinedSecondaryVertexBJetTags");
-	 double CSVpfNegative = i_pfjetchs->bDiscriminator("pfNegativeCombinedSecondaryVertexBJetTags");
-	 
+	 */
+	 double CSVpfPositive = i_pfjetchs->bDiscriminator("pfPositiveCombinedSecondaryVertexV2BJetTags");
+	 double CSVpfNegative = i_pfjetchs->bDiscriminator("pfNegativeCombinedSecondaryVertexV2BJetTags");
+
+     double pfBoostedDoubleSecondaryVertex = i_pfjetchs->bDiscriminator("pfBoostedDoubleSecondaryVertexAK8BJetTags");
+
 	 //the three recommended                                                                                                                                        
 	 
 	 double pfJetProbabilityBJetTags=i_pfjetchs->bDiscriminator("pfJetProbabilityBJetTags");
@@ -845,14 +848,18 @@ void ProcessedTreeProducerBTag::analyze(edm::Event const& event, edm::EventSetup
 	 if(mAK4){
 	   QGTagger = i_pfjetchs->userFloat("QGTaggerAK4PFCHS:qgLikelihood");
 	 }
+     
+
+
 	 //Filling B-tag infos
-	 qcdpfjetchs.setTCHETag(TCHE,TCHP,TCHEpf,TCHPpf);
-	 qcdpfjetchs.setSoftLeptonTag(SoftMuonTagByIP,SoftElectronTagByIP,SoftMuonTag,SoftElectronTag);
-	 qcdpfjetchs.setSimpleSecondaryVertexTag(SimpleSecVertexHE,SimpleSecVertexHP,SimpleSecVertexHEpf,SimpleSecVertexHPpf);
-	 qcdpfjetchs.setCombinedSecondaryVertexTag(CSV,CSVpf,CinclSVpf,CSVSoftLeptonpf,CMVApf);
+	 //qcdpfjetchs.setTCHETag(TCHE,TCHP,TCHEpf,TCHPpf);
+	 //qcdpfjetchs.setSoftLeptonTag(SoftMuonTagByIP,SoftElectronTagByIP,SoftMuonTag,SoftElectronTag);
+	 //qcdpfjetchs.setSimpleSecondaryVertexTag(SimpleSecVertexHE,SimpleSecVertexHP,SimpleSecVertexHEpf,SimpleSecVertexHPpf);
+	 //qcdpfjetchs.setCombinedSecondaryVertexTag(CSV,CSVpf,CinclSVpf,CSVSoftLeptonpf,CMVApf);
 	 qcdpfjetchs.setPositiveNegativeCSV(CSVpfPositive,CSVpfNegative);
 	 qcdpfjetchs.setTagRecommended(pfJetProbabilityBJetTags,pfCombinedInclusiveSecondaryVertexV2BJetTags,pfCombinedMVAV2BJetTags);
 	 qcdpfjetchs.setQGTagger(QGTagger);	 
+     qcdpfjetchs.setBoosted(pfBoostedDoubleSecondaryVertex);
 
 	 float pileupJetId = -999;
 	 if ( i_pfjetchs->hasUserFloat(pfchsjetpuid) )   {  pileupJetId = i_pfjetchs->userFloat(pfchsjetpuid);}

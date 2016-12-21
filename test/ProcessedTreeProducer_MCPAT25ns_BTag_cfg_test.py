@@ -69,7 +69,28 @@ def jetToolbox( proc, jetType, jetSequence,PUMethod='', bTagDiscriminators = Non
 
 	JETCorrPayload='None'
 	JETCorrLevels = [ 'None' ]
-	bTagDiscriminators = ['trackCountingHighEffBJetTags','trackCountingHighPurBJetTags','pfTrackCountingHighEffBJetTags','pfTrackCountingHighPurBJetTags','softPFMuonByIP3dBJetTags','softPFElectronByIP3dBJetTags','softPFMuonBJetTags','softPFElectronBJetTags','simpleSecondaryVertexHighEffBJetTags','simpleSecondaryVertexHighPurBJetTags','pfSimpleSecondaryVertexHighEffBJetTags','pfSimpleSecondaryVertexHighPurBJetTags','combinedSecondaryVertexV2BJetTags','pfCombinedSecondaryVertexV2BJetTags','pfCombinedInclusiveSecondaryVertexV2BJetTags','pfCombinedMVAV2BJetTags','pfPositiveCombinedSecondaryVertexV2BJetTags','pfNegativeCombinedSecondaryVertexV2BJetTags','pfCombinedInclusiveSecondaryVertexV2BJetTags','pfCombinedMVAV2BJetTags','pfJetProbabilityBJetTags']
+	bTagDiscriminators = [#'trackCountingHighEffBJetTags',
+                          #'trackCountingHighPurBJetTags',
+                          #'pfTrackCountingHighEffBJetTags',
+                          #'pfTrackCountingHighPurBJetTags',
+                          #'softPFMuonByIP3dBJetTags',
+                          #'softPFElectronByIP3dBJetTags',
+                          #'softPFMuonBJetTags',
+                          #'softPFElectronBJetTags',
+                          #'simpleSecondaryVertexHighEffBJetTags',
+                          #'simpleSecondaryVertexHighPurBJetTags',
+                          #'pfSimpleSecondaryVertexHighEffBJetTags',
+                          #'pfSimpleSecondaryVertexHighPurBJetTags',
+                          #'combinedSecondaryVertexV2BJetTags',
+                          'pfCombinedCvsLJetTags',
+                          'pfCombinedCvsBJetTags',
+                          'pfBoostedDoubleSecondaryVertexAK8BJetTags',
+                          'pfCombinedSecondaryVertexV2BJetTags',
+                          'pfPositiveCombinedSecondaryVertexV2BJetTags',  #implemented
+                          'pfNegativeCombinedSecondaryVertexV2BJetTags',  #implemented
+                          'pfCombinedInclusiveSecondaryVertexV2BJetTags', #implemented
+                          'pfCombinedMVAV2BJetTags',                      #implemented
+                          'pfJetProbabilityBJetTags']                     #implemented
 
 	GetJetMCFlavour = ['True']
         #JECLevels = [ 'L1Offset', 'L1FastJet', 'L1JPTOffset', 'L2Relative', 'L3Absolute', 'L5Falvour', 'L7Parton' ]

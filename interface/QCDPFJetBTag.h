@@ -12,11 +12,12 @@ class QCDPFJetBTag : public QCDJet {
      //------------ Destructor -------------------------------
      ~QCDPFJetBTag() {}
      //------------ Set methods ------------------------------
+     /*
      void setTCHETag(float ftche, float ftchp, float ftchepf, float ftchppf)  {TCHE_ = ftche; TCHP_ = ftchp; TCHEpf_ = ftchepf; TCHPpf_ = ftchppf; }
      void setSoftLeptonTag(float fsoftmuonbyip, float fsoftelectronbyip, float fsoftmuon, float fsoftelectron)  {SoftMuonTagByIP_ = fsoftmuonbyip; SoftElectronTagByIP_ = fsoftelectronbyip; SoftMuonTag_ = fsoftmuon; SoftElectronTag_ = fsoftelectron; }
      void setSimpleSecondaryVertexTag(float fsimplesecvertexhe, float fsimplesecvertexhp, float fsimplesecvertexhepf, float fsimplesecvertexhppf)  {SimpleSecVertexHE_ = fsimplesecvertexhe; SimpleSecVertexHP_ = fsimplesecvertexhp; SimpleSecVertexHEpf_ = fsimplesecvertexhepf; SimpleSecVertexHPpf_ = fsimplesecvertexhppf; }
      void setCombinedSecondaryVertexTag(float fcsv, float fcsvpf, float fcinclsvpf, float fcsvsoftleptonpf, float fcmvapf)  {CSV_ = fcsv; CSVpf_ = fcsvpf; CinclSVpf_ = fcinclsvpf; CSVSoftLeptonpf_ = fcsvsoftleptonpf; CMVApf_= fcmvapf;}
-
+     */
      void setPositiveNegativeCSV(float fcsvpfpositive, float fcsvpfnegative) { CSVpfPositive_ = fcsvpfpositive; CSVpfNegative_ = fcsvpfnegative;}
 
      void setTagRecommended(float recommend1, float recommend2, float recommend3) { recommend1_ = recommend1; recommend2_ = recommend2; recommend3_ = recommend3; } 
@@ -25,7 +26,9 @@ class QCDPFJetBTag : public QCDJet {
 
      void setQGTagger(float fQGTagger) {QGtagger_ = fQGTagger;}
 
+     void setBoosted(float fboosted) {boosted_ = fboosted;}
      //------------ Get methods ------------------------------
+     /*
      float tche()     const {return TCHE_;}
      float tchp()     const {return TCHP_;}
      float tchepf()      const {return TCHEpf_;}
@@ -43,9 +46,11 @@ class QCDPFJetBTag : public QCDJet {
      float cinclsvpf()      const {return CinclSVpf_;}
      float cmvapf()      const {return CMVApf_;}
      float csvsoftleptonpf()      const {return CSVSoftLeptonpf_;}
-     
+     */
      float csvpfpositive()      const {return CSVpfPositive_;}
      float csvpfnegative()      const {return CSVpfNegative_;}
+    
+     float pfBoostedDouble()  const {return boosted_;} 
 
      float partonflavour()      const {return partonFlavour_;}
      float hadronflavour()      const {return hadronFlavour_;}
@@ -57,6 +62,7 @@ class QCDPFJetBTag : public QCDJet {
      float pfCombinedMVAV2BJetTags() const {return recommend2_;}
 
    private:
+     /*
      float TCHE_;
      float TCHP_;
      float TCHEpf_;
@@ -74,8 +80,11 @@ class QCDPFJetBTag : public QCDJet {
      float CinclSVpf_;
      float CMVApf_;
      float CSVSoftLeptonpf_;
+     */
      float CSVpfPositive_;
      float CSVpfNegative_;
+     
+     float boosted_;
 
      float QGtagger_;
 
