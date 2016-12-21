@@ -1005,9 +1005,10 @@ void Analysis_Template_MC::analyze(edm::Event const& iEvent, edm::EventSetup con
 
 	 num_of_Vtx->Fill(Event->evtHdr().nVtx(),hweight);
 	 /// Keep events with PVgood
-       
+    
+     /*
 	 if(mprintOk==1){
-           for(unsigned j=0; j<Event->nPFJets(); ++j){
+           for(unsigned j=0; j<Event->nPFJetsCHS(); ++j){
 	     if(Event->evtHdr().runNo()==251252){
 	       if(Event->evtHdr().lumi()==158 && Event->evtHdr().event()==95957128) {
 		 cout<<Event->evtHdr().event()<<endl;
@@ -1021,7 +1022,7 @@ void Analysis_Template_MC::analyze(edm::Event const& iEvent, edm::EventSetup con
 	     }
            }
 	 }
-	 
+	 */
 	 if (Event->evtHdr().isPVgood() != 1) continue;
 	 
 	 for (int j=0; j<nJetTrig; j++){

@@ -58,7 +58,8 @@ class ProcessedTreeProducerBTag : public edm::EDAnalyzer
     bool   mAK4;
     bool   mUseGenInfo;
     bool   mPrintTriggerMenu;
-    bool   isPFJecUncSet_,isPFJecUncSetCHS_;
+    //bool   isPFJecUncSet_ 
+    bool   isPFJecUncSetCHS_;
     int    mGoodVtxNdof,mMinNPFJets;
     double mGoodVtxZ;
     double mMinPFPt,mMinPFFatPt,mMaxPFFatEta,mMinGenPt,mMaxY,mMinJJMass;
@@ -69,7 +70,7 @@ class ProcessedTreeProducerBTag : public edm::EDAnalyzer
     std::string pfchsjetpuid;
 
     // unc file for non CHS jet ---- //
-    std::string mPFJECUncSrc;
+    //std::string mPFJECUncSrc;
     // unc file for CHS jet ---- //
     std::string mPFJECUncSrcCHS;
     std::vector<std::string> mPFJECUncSrcNames;
@@ -77,7 +78,7 @@ class ProcessedTreeProducerBTag : public edm::EDAnalyzer
     // ---- non CHS jet input tag ----- //
     edm::EDGetTokenT<reco::VertexCollection> mOfflineVertices;
     edm::EDGetTokenT<reco::BeamSpot> mBeamSpot;
-    edm::EDGetTokenT<edm::View<pat::Jet> >mPFJetsName;
+    //edm::EDGetTokenT<edm::View<pat::Jet> >mPFJetsName;
     edm::EDGetTokenT<edm::View<pat::Jet> >mPFJetsNameCHS;
     edm::EDGetTokenT<GenEventInfoProduct> mhEventInfo;
     edm::EDGetTokenT<edm::ValueMap<float>> qgToken;
@@ -107,17 +108,17 @@ class ProcessedTreeProducerBTag : public edm::EDAnalyzer
     edm::Handle<edm::TriggerResults>   triggerResultsHandle_;
     edm::Handle<trigger::TriggerEvent> triggerEventHandle_;
     //hadron jet definition
-    //edm::EDGetTokenT<reco::JetFlavourInfoMatchingCollection> jetFlavourInfosToken_;
+    edm::EDGetTokenT<reco::JetFlavourInfoMatchingCollection> jetFlavourInfosToken_;
 
     HLTConfigProvider hltConfig_;
     //---- CORRECTORS ----------------------
     const JetCorrector *mPFJEC;
     // ---- non CHS jet uncertainty ------ //
-    JetCorrectionUncertainty *mPFUnc;
+    //JetCorrectionUncertainty *mPFUnc;
     // ---- non CHS jet uncertainty ------ //
     JetCorrectionUncertainty *mPFUncCHS;
     //------- non CHS jet uncertainty sources -------- //
-    std::vector<JetCorrectionUncertainty*> mPFUncSrc;
+    //std::vector<JetCorrectionUncertainty*> mPFUncSrc;
     // -------- CHS jet uncertainty sources -------- //
     std::vector<JetCorrectionUncertainty*> mPFUncSrcCHS;
 

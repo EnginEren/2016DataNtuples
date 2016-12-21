@@ -27,7 +27,7 @@ class QCDEvent
       void setMvaMET(const QCDMET& fMvaMET)                         {MvaMet_ = fMvaMET;}
       void setEvtHdr(const QCDEventHdr& fEvtHdr)                  {EvtHdr_ = fEvtHdr;}
       void setCaloJets(const std::vector<QCDCaloJet>& fCaloJets);
-      void setPFJets(const std::vector<QCDPFJet>& fPFJets);
+      //void setPFJets(const std::vector<QCDPFJet>& fPFJets);
       void setPFJetsCHS(const std::vector<QCDPFJet>& fPFJetsCHS);
       void setElectrons(const std::vector<MyElectron>& fElectron);
       void setMuons(const std::vector<MyMuon>& fMuon);
@@ -48,7 +48,7 @@ class QCDEvent
       unsigned int nTriggers()                         const {return TriggerDecision_.size();}
       unsigned int nL1Obj(int i)                       const {return L1Obj_[i].size();}
       unsigned int nHLTObj(int i)                      const {return HLTObj_[i].size();}
-      unsigned int nPFJets()                           const {return PFJets_.size();}
+      //unsigned int nPFJets()                           const {return PFJets_.size();}
       unsigned int nPFJetsCHS()                        const {return PFJetsCHS_.size();}
       //unsigned int nFatJets()                          const {return FatJets_.size();}
       unsigned int nCaloJets()                         const {return CaloJets_.size();}
@@ -68,8 +68,8 @@ class QCDEvent
       float genmjj();
       float pfchsmjjcor(int unc);
       float pfchsmjjcor(int unc,int src);
-      float pfmjjcor(int unc);
-      float pfmjjcor(int unc,int src);
+      //float pfmjjcor(int unc);
+      //float pfmjjcor(int unc,int src);
       //float fatmjjcor(int unc);
       float calomjjcor(int unc);
       float pfmjjgen();
@@ -80,7 +80,7 @@ class QCDEvent
       const LorentzVector& hltobj(int itrig, int iobj) const {return (HLTObj_[itrig])[iobj];}
       const LorentzVector& l1obj(int itrig, int iobj)  const {return (L1Obj_[itrig])[iobj];}
       const LorentzVector& genjet(int i)               const {return GenJets_[i];}
-      const QCDPFJet&      pfjet(int i)                const {return PFJets_[i];}
+      //const QCDPFJet&      pfjet(int i)                const {return PFJets_[i];}
       const QCDPFJet&      pfjetchs(int i)             const {return PFJetsCHS_[i];}
       //const QCDJet&        fatjet(int i)               const {return FatJets_[i];}
       const QCDCaloJet&    calojet(int i)              const {return CaloJets_[i];}
@@ -121,7 +121,7 @@ class QCDEvent
       //---- CaloJets ------------------------------------------------
       std::vector<QCDCaloJet>                  CaloJets_;
       //---- PFJets --------------------------------------------------
-      std::vector<QCDPFJet>                    PFJets_;
+      //std::vector<QCDPFJet>                    PFJets_;
       //---- PFJetsCHS -----------------------------------------------
       std::vector<QCDPFJet>                    PFJetsCHS_;
       //---- FatJets -------------------------------------------------

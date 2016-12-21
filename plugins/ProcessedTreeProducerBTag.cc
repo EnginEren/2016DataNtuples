@@ -77,9 +77,9 @@ ProcessedTreeProducerBTag::ProcessedTreeProducerBTag(edm::ParameterSet const& cf
   hltPrescale_(cfg, consumesCollector(), *this)// ",edm::InputTag("addPileupInfo"))))
 {
 //  mPFJECservice      = cfg.getParameter<std::string>               ("pfjecService");
-  mPFPayloadName = cfg.getParameter<std::string>("PFPayloadName");
+  //mPFPayloadName = cfg.getParameter<std::string>("PFPayloadName");
   mPFPayloadNameCHS  = cfg.getParameter<std::string>               ("PFPayloadNameCHS");
-  pfpujetid       = cfg.getParameter<std::string>               ("pfpujetid");
+  //pfpujetid       = cfg.getParameter<std::string>               ("pfpujetid");
   pfchsjetpuid    = cfg.getParameter<std::string>               ("pfchsjetpuid");
   mGoodVtxNdof       = cfg.getParameter<double>                    ("goodVtxNdof");
   mGoodVtxZ          = cfg.getParameter<double>                    ("goodVtxZ");
@@ -95,15 +95,15 @@ ProcessedTreeProducerBTag::ProcessedTreeProducerBTag(edm::ParameterSet const& cf
   mMinGenPt          = cfg.getUntrackedParameter<double>           ("minGenPt",30);
   processName_       = cfg.getParameter<std::string>               ("processName");
   triggerNames_      = cfg.getParameter<std::vector<std::string> > ("triggerName");
-  mPFJECUncSrc       = cfg.getParameter<std::string>               ("jecUncSrc");
+  //mPFJECUncSrc       = cfg.getParameter<std::string>               ("jecUncSrc");
   mPFJECUncSrcCHS    = cfg.getParameter<std::string>               ("jecUncSrcCHS");
   mPFJECUncSrcNames  = cfg.getParameter<std::vector<std::string> > ("jecUncSrcNames");
-  mPFJetsName = consumes<edm::View<pat::Jet> >(cfg.getParameter<edm::InputTag>("pfjets"));
+  //mPFJetsName = consumes<edm::View<pat::Jet> >(cfg.getParameter<edm::InputTag>("pfjets"));
   mPFJetsNameCHS = consumes<edm::View<pat::Jet> >(cfg.getParameter<edm::InputTag>("pfjetschs"));
   mhEventInfo = consumes<GenEventInfoProduct>(cfg.getParameter<edm::InputTag>("EventInfo"));
   mgenParticles = consumes<reco::GenParticleCollection>(cfg.getParameter<edm::InputTag>("GenParticles"));
   qgToken = consumes<edm::ValueMap<float>>(edm::InputTag("QGTagger", "qgLikelihood"));
-  //jetFlavourInfosToken_ = consumes<reco::JetFlavourInfoMatchingCollection>( cfg.getParameter<edm::InputTag>("jetFlavourInfos"));
+  jetFlavourInfosToken_ = consumes<reco::JetFlavourInfoMatchingCollection>( cfg.getParameter<edm::InputTag>("jetFlavourInfos"));
   //mPFJetsName        = cfg.getParameter<edm::InputTag>             ("pfjets");
   //mPFJetsNameCHS     = cfg.getParameter<edm::InputTag>             ("pfjetschs");
   //mSrcPU = cfg.getUntrackedParameter<edm::InputTag> ("srcPU",edm::InputTag("addPileupInfo"));
@@ -124,7 +124,7 @@ void ProcessedTreeProducerBTag::beginJob()
     mTriggerNamesHisto->Fill(triggerNames_[i].c_str(),1);
   mTriggerPassHisto = fs->make<TH1F>("TriggerPass","TriggerPass",1,0,1);
   mTriggerPassHisto->SetBit(TH1::kUserContour);
-  isPFJecUncSet_ = false;
+  //isPFJecUncSet_ = false;
   isPFJecUncSetCHS_ = false;
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -381,6 +381,8 @@ void ProcessedTreeProducerBTag::analyze(edm::Event const& event, edm::EventSetup
   //---------------- Jets ---------------------------------------------
   //mPFJEC   = JetCorrector::getJetCorrector(mPFJECservice,iSetup);
  //event.getByToken(mvaFullPUDiscriminantToken_ ,puJetIdMva);
+  
+  /*   LET's remove PFjets // Engin 
   edm::ESHandle<JetCorrectorParametersCollection> PFJetCorParColl;
   if (mPFPayloadName != "" && !isPFJecUncSet_){
     iSetup.get<JetCorrectionsRecord>().get(mPFPayloadName,PFJetCorParColl);
@@ -395,7 +397,7 @@ void ProcessedTreeProducerBTag::analyze(edm::Event const& event, edm::EventSetup
     } // if (mPFJECUncSrc != "")
     isPFJecUncSet_ = true;
   } // if (mPFPayloadName != "" && !isPFJecUncSet_)
-  
+  */
 
   Handle<GenJetCollection>  genjets;
   if (mIsMCarlo) {
@@ -419,7 +421,7 @@ void ProcessedTreeProducerBTag::analyze(edm::Event const& event, edm::EventSetup
     }
 
     edm::Handle<reco::JetFlavourInfoMatchingCollection> theJetFlavourInfos;
-    //event.getByToken(jetFlavourInfosToken_, theJetFlavourInfos );
+    event.getByToken(jetFlavourInfosToken_, theJetFlavourInfos );
     
     for ( reco::JetFlavourInfoMatchingCollection::const_iterator j  = theJetFlavourInfos->begin();j != theJetFlavourInfos->end();++j ) {
       //std::cout << "-------------------- Jet Flavour Info --------------------" << std::endl;
@@ -442,13 +444,14 @@ void ProcessedTreeProducerBTag::analyze(edm::Event const& event, edm::EventSetup
   }
   
   //----------- PFJets non CHS part -------------------------
-
-  edm::Handle<edm::View<pat::Jet> > patjets;
-  event.getByToken(mPFJetsName,patjets);
+  //Let's remove NON-CHS part  Engin 
+  
+  //edm::Handle<edm::View<pat::Jet> > patjets;
+  //event.getByToken(mPFJetsName,patjets);
 
   /*edm::Handle<reco::JetTagCollection> btagDiscriminators;
     event.getByLabel("pfCombinedInclusiveSecondaryVertexV2BJetTags", btagDiscriminators);  */
-
+  /*
   for(edm::View<pat::Jet>::const_iterator i_pfjet=patjets->begin(); i_pfjet!=patjets->end(); ++i_pfjet)
     {
       QCDPFJet qcdpfjet;
@@ -643,7 +646,8 @@ void ProcessedTreeProducerBTag::analyze(edm::Event const& event, edm::EventSetup
 
       } // if(iJet->isPFJet() )
     } // --- end of non chs patjet iterator loop -------------------- //
-  
+  */
+
   // ========================******************************************===================== //
   
   // -------- CHS Uncertainty part ----------------//
@@ -772,18 +776,22 @@ void ProcessedTreeProducerBTag::analyze(edm::Event const& event, edm::EventSetup
 	 int elm      = i_pfjetchs->electronMultiplicity();
 	 int mum      = i_pfjetchs->muonMultiplicity();
 	 int npr      = i_pfjetchs->chargedMultiplicity() + i_pfjetchs->neutralMultiplicity();
-	 //bool looseID  = (npr>1 && phf<0.99 && nhf<0.99 && ((fabs(i_pfjetchs->eta())<=2.4 && elf<0.99 && chf>0 && chm>0) || fabs(i_pfjetchs->eta())>2.4));
-	 //bool tightID  = (npr>1 && phf<0.99 && nhf<0.99 && ((fabs(i_pfjetchs->eta())<=2.4 && nhf<0.9 && phf<0.9 && elf<0.99 && chf>0 && chm>0) || fabs(i_pfjetchs->eta())>2.4));
-	 // https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetID
+	 
+	 
 	 float eta    = i_pfjetchs->eta();
 	 int cm       = i_pfjetchs->chargedMultiplicity();
-	 bool looseID = (nhf<0.99 && nemf<0.99 && npr>1 && muf<0.8) && ((fabs(eta) <= 2.4 && chf>0 && cm>0 && cemf<0.99) || fabs(eta)>2.4);
-	 bool tightID = (nhf<0.90 && nemf<0.90 && npr>1 && muf<0.8) && ((fabs(eta)<=2.4 && chf>0 && cm>0 && cemf<0.90) || fabs(eta)>2.4);
+   bool looseID = (nhf<0.99 && nemf<0.99 && npr > 1) && ((abs(eta)<=2.4 && chf>0 && chm>0 && cemf <0.99) || abs(eta)>2.4) && abs(eta)<=2.7;
+   bool tightID = (nhf<0.90 && nemf<0.90 && npr > 1) && ((abs(eta)<=2.4 && chf>0 && chm>0 && cemf <0.99) || abs(eta)>2.4) && abs(eta)<=2.7;
+   // https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetID
+   
+   //OLD JET IDs, 
+  //	 bool looseID = (nhf<0.99 && nemf<0.99 && npr>1 && muf<0.8) && ((fabs(eta) <= 2.4 && chf>0 && cm>0 && cemf<0.99) || fabs(eta)>2.4);
+  //	 bool tightID = (nhf<0.90 && nemf<0.90 && npr>1 && muf<0.8) && ((fabs(eta)<=2.4 && chf>0 && cm>0 && cemf<0.90) || fabs(eta)>2.4);
 	 
 	 qcdpfjetchs.setLooseID(looseID);
 	 qcdpfjetchs.setTightID(tightID);
 	 qcdpfjetchs.setFrac(chf,nhf,nemf,cemf,muf);
-	 qcdpfjetchs.setMulti(npr,chm,nhm,phm,elm,mum);
+	 qcdpfjetchs.setMulti(npr,chm,nhm,phm,elm,mum,cm);
 	 qcdpfjetchs.setHFFrac(hf_hf,hf_phf);
 	 qcdpfjetchs.setHFMulti(hf_hm,hf_phm);
 	 
@@ -889,7 +897,7 @@ void ProcessedTreeProducerBTag::analyze(edm::Event const& event, edm::EventSetup
   //-------------- fill the tree -------------------------------------
   sort(mPFJets.begin(),mPFJets.end(),sort_pfjets);
   mEvent->setEvtHdr(mEvtHdr);
-  mEvent->setPFJets(mPFJets);
+  //mEvent->setPFJets(mPFJets);
   mEvent->setPFJetsCHS(mPFJetsCHS); // -- later substitute chs jets
   mEvent->setGenJets(mGenJets);
   mEvent->setGenFlavour(GenFlavour);
@@ -898,7 +906,7 @@ void ProcessedTreeProducerBTag::analyze(edm::Event const& event, edm::EventSetup
   mEvent->setL1Obj(mL1Objects);
   mEvent->setHLTObj(mHLTObjects);
   if ((mEvent->nPFJetsCHS() >= (unsigned)mMinNPFJets) ) {
-    if ((mEvent->pfmjjcor(0) >= mMinJJMass) ) {
+    if ((mEvent->pfchsmjjcor(0) >= mMinJJMass) ) {
       //    cout<<"Feeling tree ----"<<endl;
       mTree->Fill();
     }

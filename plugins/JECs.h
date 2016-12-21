@@ -40,7 +40,8 @@ class JECs  {
     std::vector<JetCorrectionUncertainty*> mPFUncSrc;
     std::vector<JetCorrectionUncertainty*> mCaloUncSrc;
     std::vector<string> mJECUncSrcNames;
-    
+   
+    /*
     virtual void JEC_corrections(QCDEvent *Event, unsigned n_PFJets, bool IsMCarlo, vector<string> jecUncSrcNames){
 
 
@@ -157,9 +158,9 @@ class JECs  {
 
     // ----- pT sorting the PF jets ------- //
     sort(mPFJets.begin(),mPFJets.end(),sort_pfjets);
-    Event->setPFJets(mPFJets);
+    //Event->setPFJets(mPFJets);
     }
-
+    */
     virtual void JEC_CHScorrections(QCDEvent *Event, unsigned n_PFJetsCHS, bool IsMCarlo, vector<string> jecUncSrcNames){
 
              // ---- declaration of the vector of jets ---- //
