@@ -4,4 +4,7 @@ BTagDiscriminators:
 - pfJetProbabilityBJetTags --> recommended1
 - pfCombinedInclusiveSecondaryVertexV2BJetTags --> recommended2
 - pfCombinedMVAV2BJetTags --> recommended3
+- pfPositiveCombinedSecondaryVertexV2BJetTags --> CSVpfPositive
+- pfNegativeCombinedSecondaryVertexV2BJetTags --> CSVpfNegative
+- pfBoostedDoubleSecondaryVertexAK8BJetTags -->  boosted
 
