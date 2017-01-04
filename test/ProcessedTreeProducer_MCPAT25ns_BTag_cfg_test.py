@@ -62,7 +62,7 @@ inFiles = cms.untracked.vstring(
 'root://cms-xrd-global.cern.ch//store/mc/RunIISpring16DR80/QCD_Pt_1400to1800_TuneCUETP8M1_13TeV_pythia8/AODSIM/PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/60000/381409B5-9B08-E611-98F3-0025905B85A0.root'
    )
 
-process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(500))
+process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(1000))
 process.source = cms.Source("PoolSource", fileNames = inFiles )
 
 def jetToolbox( proc, jetType, jetSequence,PUMethod='', bTagDiscriminators = None):

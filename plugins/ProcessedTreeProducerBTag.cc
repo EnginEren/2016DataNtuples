@@ -763,7 +763,7 @@ void ProcessedTreeProducerBTag::analyze(edm::Event const& event, edm::EventSetup
 	 
 	 double chf   = i_pfjetchs->chargedHadronEnergyFraction();
 	 double nhf   = i_pfjetchs->neutralHadronEnergyFraction();// + i_pfjetchs->HFHadronEnergyFraction();
-	 double nemf   = i_pfjetchs->neutralEmEnergyFraction(); // equals to deprecated phf but has HF info too
+	 double nemf  = i_pfjetchs->neutralEmEnergyFraction(); // equals to deprecated phf but has HF info too
 	 double cemf  = i_pfjetchs->chargedEmEnergyFraction(); // equals to deprecated elf
 	 double muf   = i_pfjetchs->muonEnergyFraction();
 	 double hf_hf = i_pfjetchs->HFHadronEnergyFraction();
@@ -780,9 +780,22 @@ void ProcessedTreeProducerBTag::analyze(edm::Event const& event, edm::EventSetup
 	 
 	 float eta    = i_pfjetchs->eta();
 	 int cm       = i_pfjetchs->chargedMultiplicity();
-   bool looseID = (nhf<0.99 && nemf<0.99 && npr > 1) && ((abs(eta)<=2.4 && chf>0 && chm>0 && cemf <0.99) || abs(eta)>2.4) && abs(eta)<=2.7;
-   bool tightID = (nhf<0.90 && nemf<0.90 && npr > 1) && ((abs(eta)<=2.4 && chf>0 && chm>0 && cemf <0.99) || abs(eta)>2.4) && abs(eta)<=2.7;
-   // https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetID
+     
+     bool looseID, tightID;
+     if ( fabs(eta) <= 2.7){
+        looseID = (nhf<0.99 && nemf<0.99 && npr > 1) && ((fabs(eta)<=2.4 && chf>0 && chm>0 && cemf <0.99) || fabs(eta)>2.4);
+        tightID = (nhf<0.90 && nemf<0.90 && npr > 1) && ((fabs(eta)<=2.4 && chf>0 && chm>0 && cemf <0.99) || fabs(eta)>2.4);
+     }
+     else if ( fabs(eta) <= 3.0){
+        looseID = (nemf<0.90 && (npr - cm)>2 ); 
+        tightID = (nemf<0.90 && (npr - cm)>2 ); 
+     }
+     else {
+        looseID = (nemf<0.90 && (npr - cm)>10 ); 
+        tightID = (nemf<0.90 && (npr - cm)>10 ); 
+     }
+
+        // https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetID
    
    //OLD JET IDs, 
   //	 bool looseID = (nhf<0.99 && nemf<0.99 && npr>1 && muf<0.8) && ((fabs(eta) <= 2.4 && chf>0 && cm>0 && cemf<0.99) || fabs(eta)>2.4);
