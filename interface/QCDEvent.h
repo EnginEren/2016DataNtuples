@@ -7,8 +7,8 @@
 #include "SMPJ/AnalysisFW/interface/QCDMET.h"
 #include "SMPJ/AnalysisFW/interface/QCDCaloJet.h"
 #include "SMPJ/AnalysisFW/interface/QCDPFJet.h"
-#include "SMPJ/AnalysisFW/interface/MyElectron.h"
-#include "SMPJ/AnalysisFW/interface/MyMuon.h"
+//#include "SMPJ/AnalysisFW/interface/MyElectron.h"
+//#include "SMPJ/AnalysisFW/interface/MyMuon.h"
 #include "SMPJ/AnalysisFW/interface/QCDEventHdr.h"
 #include "DataFormats/JetReco/interface/Jet.h"
 #include <vector>
@@ -26,11 +26,11 @@ class QCDEvent
       void setPFMET(const QCDMET& fPFMET)                         {PFMet_ = fPFMET;}
       void setMvaMET(const QCDMET& fMvaMET)                         {MvaMet_ = fMvaMET;}
       void setEvtHdr(const QCDEventHdr& fEvtHdr)                  {EvtHdr_ = fEvtHdr;}
-      void setCaloJets(const std::vector<QCDCaloJet>& fCaloJets);
+      //void setCaloJets(const std::vector<QCDCaloJet>& fCaloJets);
       //void setPFJets(const std::vector<QCDPFJet>& fPFJets);
       void setPFJetsCHS(const std::vector<QCDPFJet>& fPFJetsCHS);
-      void setElectrons(const std::vector<MyElectron>& fElectron);
-      void setMuons(const std::vector<MyMuon>& fMuon);
+      //void setElectrons(const std::vector<MyElectron>& fElectron);
+      //void setMuons(const std::vector<MyMuon>& fMuon);
 
       //void setFatJets(const std::vector<QCDJet>& fFatJets);
       void setGenJets(const std::vector<LorentzVector>& fGenJets);
@@ -51,15 +51,15 @@ class QCDEvent
       //unsigned int nPFJets()                           const {return PFJets_.size();}
       unsigned int nPFJetsCHS()                        const {return PFJetsCHS_.size();}
       //unsigned int nFatJets()                          const {return FatJets_.size();}
-      unsigned int nCaloJets()                         const {return CaloJets_.size();}
+      //unsigned int nCaloJets()                         const {return CaloJets_.size();}
       unsigned int nGenJets()                          const {return GenJets_.size();}
       int nGoodJets(int unc, int id, float ymax, float ptmin, std::vector<QCDJet> jets);
       int fired(int i)                                 const {return TriggerDecision_[i];}
       int preL1(int i)                                 const {return L1Prescale_[i];}
       int preHLT(int i)                                const {return HLTPrescale_[i];}
       float pfmjj();
-      unsigned int nMuons()                           const {return mMuon_.size();}
-      unsigned int nEelctrons()                           const {return mElectron_.size();}
+      //unsigned int nMuons()                           const {return mMuon_.size();}
+      //unsigned int nEelctrons()                           const {return mElectron_.size();}
 
       float GenJetFlavour(int i)                       const {return genFlavour_[i];}
       float GenHadronJetFlavour(int i)                       const {return genFlavourHadron_[i];}
@@ -71,9 +71,9 @@ class QCDEvent
       //float pfmjjcor(int unc);
       //float pfmjjcor(int unc,int src);
       //float fatmjjcor(int unc);
-      float calomjjcor(int unc);
+      //float calomjjcor(int unc);
       float pfmjjgen();
-      float calomjjgen();
+      //float calomjjgen();
       const QCDMET&        calomet()                   const {return CaloMet_;}
       const QCDMET&        pfmet()                     const {return PFMet_;}
       const QCDMET&        mvamet()                     const {return MvaMet_;}
@@ -83,11 +83,11 @@ class QCDEvent
       //const QCDPFJet&      pfjet(int i)                const {return PFJets_[i];}
       const QCDPFJet&      pfjetchs(int i)             const {return PFJetsCHS_[i];}
       //const QCDJet&        fatjet(int i)               const {return FatJets_[i];}
-      const QCDCaloJet&    calojet(int i)              const {return CaloJets_[i];}
+      //const QCDCaloJet&    calojet(int i)              const {return CaloJets_[i];}
       const QCDEventHdr&   evtHdr()                    const {return EvtHdr_;}
 
-      const MyMuon& muon(int i) const {return mMuon_[i];}
-      const MyElectron& electron(int i) const {return mElectron_[i];}
+      //const MyMuon& muon(int i) const {return mMuon_[i];}
+      //const MyElectron& electron(int i) const {return mElectron_[i];}
 
       const std::vector<std::vector<LorentzVector>>& HLTObj() const {return HLTObj_;}
       const std::vector<std::string>& trigPathList() const {return triggerList_;}
@@ -119,7 +119,7 @@ class QCDEvent
       //---- Genjets -------------------------------------------------
       std::vector<LorentzVector>               GenJets_;
       //---- CaloJets ------------------------------------------------
-      std::vector<QCDCaloJet>                  CaloJets_;
+      //std::vector<QCDCaloJet>                  CaloJets_;
       //---- PFJets --------------------------------------------------
       //std::vector<QCDPFJet>                    PFJets_;
       //---- PFJetsCHS -----------------------------------------------
@@ -130,8 +130,8 @@ class QCDEvent
       std::vector<float>  genFlavourHadron_;
 
       //MyMuons
-      std::vector<MyMuon> mMuon_;
-      std::vector<MyElectron> mElectron_;
+      //std::vector<MyMuon> mMuon_;
+      //std::vector<MyElectron> mElectron_;
 
 };
 #endif

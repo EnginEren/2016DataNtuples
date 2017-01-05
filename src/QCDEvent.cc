@@ -12,6 +12,7 @@ QCDEvent::~QCDEvent()
 {
 }
 //---------------------------------------------------
+/*
 void QCDEvent::setCaloJets(const std::vector<QCDCaloJet>& fCaloJets)
 {
  CaloJets_.clear();
@@ -19,8 +20,9 @@ void QCDEvent::setCaloJets(const std::vector<QCDCaloJet>& fCaloJets)
    CaloJets_.push_back(fCaloJets[i]);
  }
 }
+
 //---------------------------------------------------
-/*
+
 void QCDEvent::setPFJets(const std::vector<QCDPFJet>& fPFJets)
 {
   PFJets_.clear();
@@ -38,21 +40,23 @@ void QCDEvent::setPFJetsCHS(const std::vector<QCDPFJet>& fPFJetsCHS)
   }
 }
 //---------------------------------------------------                                                                                                                    
-void QCDEvent::setElectrons(const std::vector<MyElectron>& fElectrons)
-{
-  mElectron_.clear();
-  for(unsigned i=0;i<fElectrons.size();i++) {
-    mElectron_.push_back(fElectrons[i]);
-  }
-}
+//
+//void QCDEvent::setElectrons(const std::vector<MyElectron>& fElectrons)
+//{
+//  mElectron_.clear();
+//  for(unsigned i=0;i<fElectrons.size();i++) {
+//    mElectron_.push_back(fElectrons[i]);
+//  }
+//}
 //---------------------------------------------------                                                                                                                    
-void QCDEvent::setMuons(const std::vector<MyMuon>& fMuon)
-{
-  mMuon_.clear();
-  for(unsigned i=0;i<fMuon.size();i++) {
-    mMuon_.push_back(fMuon[i]);
-  }
-}
+
+//void QCDEvent::setMuons(const std::vector<MyMuon>& fMuon)
+//{
+//  mMuon_.clear();
+//  for(unsigned i=0;i<fMuon.size();i++) {
+//    mMuon_.push_back(fMuon[i]);
+//  }
+//}
 //---------------------------------------------------
 
 //void QCDEvent::setFatJets(const std::vector<QCDJet>& fFatJets)
@@ -245,6 +249,8 @@ float QCDEvent::pfchsmjjcor(int k,int src)
 //  }
 //}
 //---------------------------------------------------
+//
+/*
 float QCDEvent::calomjj()
 {
  if (CaloJets_.size() < 2)
@@ -256,6 +262,7 @@ float QCDEvent::calomjj()
  }
 }
 ////---------------------------------------------------
+
 float QCDEvent::calomjjcor(int k)
 {
  int sign(0);
@@ -297,5 +304,5 @@ float QCDEvent::calomjjgen()
    return (P0+P1).mass();
  }
 }
-
+*/
 

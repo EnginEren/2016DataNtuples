@@ -284,6 +284,7 @@ class JECs  {
     Event->setPFJetsCHS(mPFJetsCHS);
     }
 
+    /*
     virtual void JEC_Calocorrections(QCDEvent *Event, unsigned n_CaloJets, bool IsMCarlo){
 
              // ---- declaration of the vector of jets ---- //
@@ -401,6 +402,7 @@ class JECs  {
     sort(mCaloJets.begin(),mCaloJets.end(),sort_calojets);
     Event->setCaloJets(mCaloJets);
     }
+    */
 };
 
 JECs::JECs(bool IsMCarlo, string GlobalTag, string JETTYPE, string jecUncSrc, vector<string> mJECUncSrcNames){
