@@ -7,4 +7,5 @@ BTagDiscriminators:
 - pfPositiveCombinedSecondaryVertexV2BJetTags --> CSVpfPositive
 - pfNegativeCombinedSecondaryVertexV2BJetTags --> CSVpfNegative
 - pfBoostedDoubleSecondaryVertexAK8BJetTags -->  boosted
-
+- pfCombinedCvsLJetTags--> pfCombinedCvsL
+- pfCombinedCvsBJetTags--> pfCombinedCvsB

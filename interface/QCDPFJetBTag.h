@@ -27,6 +27,8 @@ class QCDPFJetBTag : public QCDJet {
      void setQGTagger(float fQGTagger) {QGtagger_ = fQGTagger;}
 
      void setBoosted(float fboosted) {boosted_ = fboosted;}
+     void setCTagger(float fpfCombinedCvsL, float fpfCombinedCvsB) {pfCombinedCvsL_ = fpfCombinedCvsL; pfCombinedCvsB_ = fpfCombinedCvsB;}
+
      //------------ Get methods ------------------------------
      /*
      float tche()     const {return TCHE_;}
@@ -60,6 +62,8 @@ class QCDPFJetBTag : public QCDJet {
      float pfJetProbabilityBJetTags() const {return recommend1_;}
      float pfCombinedInclusiveSecondaryVertexV2BJetTags() const {return recommend2_;}
      float pfCombinedMVAV2BJetTags() const {return recommend2_;}
+     float pfCombinedCvsL() const {return pfCombinedCvsL_;}
+     float pfCombinedCvsB() const {return pfCombinedCvsB_;}
 
    private:
      /*
@@ -93,6 +97,9 @@ class QCDPFJetBTag : public QCDJet {
      float recommend1_;
      float recommend2_;
      float recommend3_;
+     // ctaggers
+     float pfCombinedCvsL_;
+     float pfCombinedCvsB_;
 
     };
 #endif

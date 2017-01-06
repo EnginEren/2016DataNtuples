@@ -839,6 +839,11 @@ void ProcessedTreeProducerBTag::analyze(edm::Event const& event, edm::EventSetup
 	 double CSVpfNegative = i_pfjetchs->bDiscriminator("pfNegativeCombinedSecondaryVertexV2BJetTags");
 
      double pfBoostedDoubleSecondaryVertex = i_pfjetchs->bDiscriminator("pfBoostedDoubleSecondaryVertexAK8BJetTags");
+     //C taggers
+     //
+     double pfCombinedCvsL = i_pfjetchs->bDiscriminator("pfCombinedCvsLJetTags");
+     double pfCombinedCvsB = i_pfjetchs->bDiscriminator("pfCombinedCvsBJetTags");
+
 
 	 //the three recommended                                                                                                                                        
 	 
@@ -873,6 +878,7 @@ void ProcessedTreeProducerBTag::analyze(edm::Event const& event, edm::EventSetup
 	 qcdpfjetchs.setTagRecommended(pfJetProbabilityBJetTags,pfCombinedInclusiveSecondaryVertexV2BJetTags,pfCombinedMVAV2BJetTags);
 	 qcdpfjetchs.setQGTagger(QGTagger);	 
      qcdpfjetchs.setBoosted(pfBoostedDoubleSecondaryVertex);
+     qcdpfjetchs.setCTagger(pfCombinedCvsL,pfCombinedCvsB);
 
 	 float pileupJetId = -999;
 	 if ( i_pfjetchs->hasUserFloat(pfchsjetpuid) )   {  pileupJetId = i_pfjetchs->userFloat(pfchsjetpuid);}
