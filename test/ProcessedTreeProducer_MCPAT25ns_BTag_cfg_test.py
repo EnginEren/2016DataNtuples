@@ -62,7 +62,7 @@ inFiles = cms.untracked.vstring(
 'root://cms-xrd-global.cern.ch//store/mc/RunIISpring16DR80/QCD_Pt_1400to1800_TuneCUETP8M1_13TeV_pythia8/AODSIM/PUSpring16_80X_mcRun2_asymptotic_2016_v3-v1/60000/381409B5-9B08-E611-98F3-0025905B85A0.root'
    )
 
-process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(1000))
+process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(700))
 process.source = cms.Source("PoolSource", fileNames = inFiles )
 
 def jetToolbox( proc, jetType, jetSequence,PUMethod='', bTagDiscriminators = None):
@@ -218,7 +218,7 @@ jetToolbox( process, 'ak4', 'ak4JetSubs','CHS')
 process.load('FWCore.MessageLogger.MessageLogger_cfi')
 process.MessageLogger.cerr.FwkReport.reportEvery = 100
 process.load('CommonTools.UtilAlgos.TFileService_cfi')
-process.TFileService.fileName=cms.string('MC_ProcessedTreeProducer_without_L2L3Residual.root')
+process.TFileService.fileName=cms.string('MC_ProcessedTreeProducer_without_L2L3.root')
 
 # PAT Layer 1
 #process.load("PhysicsTools.PatAlgos.patLayer0_cff") # need to load this
@@ -295,18 +295,18 @@ process.ak4 =  cms.EDAnalyzer('ProcessedTreeProducerBTag',
 	#pfjecService    = cms.string('ak7PFL1FastL2L3Residual'),
 )
 
-jetToolbox( process, 'ak8', 'ak8JetSubs','CHS')
+#jetToolbox( process, 'ak8', 'ak8JetSubs','CHS')
 #jetToolbox( process, 'ak8', 'ak8JetSubs')
 
-process.ak8 = process.ak4.clone(
+#process.ak8 = process.ak4.clone(
 	#pfjets          = cms.InputTag('selectedPatJetsAK8PF'),
-	pfjetschs       = cms.InputTag('selectedPatJetsAK8PFCHS'),
-	pfpujetid       = cms.string('AK8PFpileupJetIdEvaluator:fullDiscriminant'),
-	pfchsjetpuid    = cms.string('AK8PFCHSpileupJetIdEvaluator:fullDiscriminant'),
-        #PFPayloadName   = cms.string('AK8PF'),
-        PFPayloadNameCHS= cms.string('AK8PFchs'),
-        AK4             = cms.untracked.bool(False),
-)
+#	pfjetschs       = cms.InputTag('selectedPatJetsAK8PFCHS'),
+#	pfpujetid       = cms.string('AK8PFpileupJetIdEvaluator:fullDiscriminant'),
+#	pfchsjetpuid    = cms.string('AK8PFCHSpileupJetIdEvaluator:fullDiscriminant'),
+#        #PFPayloadName   = cms.string('AK8PF'),
+#        PFPayloadNameCHS= cms.string('AK8PFchs'),
+#        AK4             = cms.untracked.bool(False),
+#)
 
 jetToolbox( process, 'ak7', 'ak7JetSubs','CHS')
 #jetToolbox( process, 'ak7', 'ak7JetSubs')
@@ -321,18 +321,18 @@ process.ak7 = process.ak4.clone(
 	AK4             = cms.untracked.bool(False),
 )
 
-jetToolbox( process, 'ak5', 'ak5JetSubs','CHS')
+#jetToolbox( process, 'ak5', 'ak5JetSubs','CHS')
 #jetToolbox( process, 'ak5', 'ak5JetSubs')
 
-process.ak5 = process.ak4.clone(
-	pfjets          = cms.InputTag('selectedPatJetsAK5PF'),
-	pfjetschs       = cms.InputTag('selectedPatJetsAK5PFCHS'),
-	pfpujetid       = cms.string('AK5PFpileupJetIdEvaluator:fullDiscriminant'),
-	pfchsjetpuid    = cms.string('AK5PFCHSpileupJetIdEvaluator:fullDiscriminant'),
+#process.ak5 = process.ak4.clone(
+#	pfjets          = cms.InputTag('selectedPatJetsAK5PF'),
+#	pfjetschs       = cms.InputTag('selectedPatJetsAK5PFCHS'),
+#	pfpujetid       = cms.string('AK5PFpileupJetIdEvaluator:fullDiscriminant'),
+#	pfchsjetpuid    = cms.string('AK5PFCHSpileupJetIdEvaluator:fullDiscriminant'),
         #PFPayloadName   = cms.string('AK5PF'),
-        PFPayloadNameCHS= cms.string('AK5PFchs'),
-	AK4             = cms.untracked.bool(False),
-)
+#        PFPayloadNameCHS= cms.string('AK5PFchs'),
+#	AK4             = cms.untracked.bool(False),
+#)
 
 process.goodVertices = cms.EDFilter("VertexSelector",
    filter = cms.bool(False),
