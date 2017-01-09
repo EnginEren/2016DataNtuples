@@ -9,3 +9,6 @@ BTagDiscriminators:
 - pfBoostedDoubleSecondaryVertexAK8BJetTags -->  boosted
 - pfCombinedCvsLJetTags--> pfCombinedCvsL
 - pfCombinedCvsBJetTags--> pfCombinedCvsB
+
+Crab3:
+source /cvmfs/cms.cern.ch/crab3/crab.sh
